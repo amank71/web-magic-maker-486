@@ -10,33 +10,90 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as BookingsRouteImport } from './routes/bookings'
+import { Route as FleetRouteImport } from './routes/fleet'
+import { Route as SigninRouteImport } from './routes/signin'
+import { Route as SupportRouteImport } from './routes/support'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingsRoute = BookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FleetRoute = FleetRouteImport.update({
+  id: '/fleet',
+  path: '/fleet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/bookings': typeof BookingsRoute
+  '/fleet': typeof FleetRoute
+  '/signin': typeof SigninRoute
+  '/support': typeof SupportRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/bookings': typeof BookingsRoute
+  '/fleet': typeof FleetRoute
+  '/signin': typeof SigninRoute
+  '/support': typeof SupportRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/bookings': typeof BookingsRoute
+  '/fleet': typeof FleetRoute
+  '/signin': typeof SigninRoute
+  '/support': typeof SupportRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/admin' | '/bookings' | '/fleet' | '/signin' | '/support'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/admin' | '/bookings' | '/fleet' | '/signin' | '/support'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/bookings'
+    | '/fleet'
+    | '/signin'
+    | '/support'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  BookingsRoute: typeof BookingsRoute
+  FleetRoute: typeof FleetRoute
+  SigninRoute: typeof SigninRoute
+  SupportRoute: typeof SupportRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +105,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookings': {
+      id: '/bookings'
+      path: '/bookings'
+      fullPath: '/bookings'
+      preLoaderRoute: typeof BookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fleet': {
+      id: '/fleet'
+      path: '/fleet'
+      fullPath: '/fleet'
+      preLoaderRoute: typeof FleetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  BookingsRoute: BookingsRoute,
+  FleetRoute: FleetRoute,
+  SigninRoute: SigninRoute,
+  SupportRoute: SupportRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
